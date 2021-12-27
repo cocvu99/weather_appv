@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // key: 5022a23fca290814f90a6a12034006ca
   Future getWeather() async {
     http.Response response = await http.get(
-      Uri.parse("http://api.openweathermap.org/data/2.5/weather?q=Boston&units=imperial&appid=5022a23fca290814f90a6a12034006ca"));
+      Uri.parse("http://api.openweathermap.org/data/2.5/weather?q=Boston&units=metric&appid=5022a23fca290814f90a6a12034006ca"));
     var results = jsonDecode(response.body);
     setState(() {
       this.nhietDo = results['main']['temp'];
