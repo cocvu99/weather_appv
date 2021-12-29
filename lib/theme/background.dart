@@ -22,6 +22,7 @@ class _BackgroundState extends State<Background> {
   var currently;
   var doAm;
   var tocdoGio;
+  var cityName = "Boston";
   String uri = 
   "http://api.openweathermap.org/data/2.5/weather?q=Boston&units=metric&appid=5022a23fca290814f90a6a12034006ca";
 
@@ -68,26 +69,73 @@ class _BackgroundState extends State<Background> {
               Container(
                 height: MediaQuery.of(context).size.height / 3,
                 width: MediaQuery.of(context).size.width,
-                color: Color.fromARGB(244, 224, 214, 214),
 
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                // Xac dinh vi tri container
+                // color: Colors.red,
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10.0),
+                          child: Text(
+                            "Thoi tiet " + cityName + " hien tai",
+                            style: TextStyle(color: Colors.white, fontSize: 30.0),
+                            ),
+                          ),
 
-                  children: <Widget>[
-                    Padding(padding: EdgeInsets.only(bottom: 10.0),
-                    child: Text(
-                      "Thoi Tiet Boston hien tai",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w600
-                      ),
+                          Text(
+                            nhietDo != null ? nhietDo.toString() + "\u00B0" + "C" : "Loading",
+                            style: TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.w600),
+                          ),
+
+                          Padding(padding: EdgeInsets.only(top: 10.0),
+                            child: Text(
+                            currently != null ? "Trang thai thoi tiet: " + currently.toString() : "Loading",
+                            style: TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.w600),
+                            ),
+                          ),
+
+                        Column(
+                          children: <Widget>[
+                              Container(
+                                width: MediaQuery.of(context).size.width / 1.4,
+                                alignment: Alignment.center,
+
+                                // dinh vi vi tri container
+                                // color: Colors.blue,
+                                child: TextField(
+                                  style: TextStyle(color: Colors.white, fontSize: 25.0),
+                                  decoration: InputDecoration(
+                                    hintText: "Nhap ten thanh pho",
+                                    hintStyle: TextStyle(
+                                      color: Colors.white, fontSize: 18.0
+                                    ),
+                                    prefixIcon: Icon(Icons.search, color: Colors.white,)
+                                  ),
+                                ),
+                              )
+                          ],
+                        )
+                      ],
                     ),
-                    )
-                  ],
+
+                    
+                  )
+                  
                 ),
-              )
+              ),
+
+              
+
+              // Expanded(
+              //   child: child
+              //   )
+
+
             ],
           ),
 
