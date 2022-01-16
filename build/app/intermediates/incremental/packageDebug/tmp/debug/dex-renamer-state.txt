@@ -1,4 +1,0 @@
-#Sat Jan 15 21:35:34 ICT 2022
-base.0=E\:\\Github\\weather_appv\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
