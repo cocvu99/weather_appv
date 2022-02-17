@@ -50,7 +50,8 @@ class WeatherContent extends StatelessWidget {
                             subtitle: "17"
                           ),
                           WeatherTile(icon: Icons.filter_drama_outlined, title: "Thoi tiet", subtitle: "Cloudy"),
-                          WeatherTile(icon: Icons.sunny, title: "Do am", subtitle: "57%")
+                          WeatherTile(icon: Icons.sunny, title: "Do am", subtitle: "57%"),
+                          WeatherTile(icon: Icons.waves_outlined, title: "Toc do gio", subtitle: "5km/h",)
                         ],
                       ),
                     )
