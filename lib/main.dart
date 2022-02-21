@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(const MyApp());
@@ -77,9 +80,41 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 )
-
               ],
             ),
+          ),
+
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: ListView(
+                children: <Widget> [
+                  ListTile(
+                    leading: FaIcon(FontAwesomeIcons.thermometerHalf),
+                    title: Text("Nhiet Do: "),
+                    trailing: Text("13" + "\u00B0" + "C"),
+                  ),
+
+                  ListTile(
+                    leading: FaIcon(FontAwesomeIcons.cloud),
+                    title: Text("Trang thai: "),
+                    trailing: Text("Mua"),
+                  ),
+
+                  ListTile(
+                    leading: FaIcon(FontAwesomeIcons.sun),
+                    title: Text("Do am: "),
+                    trailing: Text("12 " + "%"),
+                  ),
+
+                  ListTile(
+                    leading: FaIcon(FontAwesomeIcons.wind),
+                    title: Text("Toc do gio: "),
+                    trailing: Text("5" + "km/h"),
+                  ),
+                ],
+              ),
+              )
           )
         ],
       ),
