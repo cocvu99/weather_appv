@@ -34,6 +34,39 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  var nhietDo;
+  var trangThai;
+  var currently;
+  var doAm;
+  var tocdoGio;
+
+  /**
+   * key = 5022a23fca290814f90a6a12034006ca
+   * url = https://api.openweathermap.org/data/2.5/weather?q=hanoi&units=metric&appid=5022a23fca290814f90a6a12034006ca
+   */
+
+  final url = "https://api.openweathermap.org/data/2.5/weather?q=hanoi&units=metric&appid=5022a23fca290814f90a6a12034006ca";
+
+  Future getWeather() async {
+    http.Response response = await http.get(Uri.parse(url));
+    var results = jsonDecode(response.body);
+
+    setState(() {
+      this.nhietDo = results['main']['temp'];
+      this.trangThai = results['weather'][0]['description'];
+      this.currently = results['weather'][0]['main'];
+      this.doAm = results['main']['humidity'];
+      this.tocdoGio = results['wind']['speed'];
+    });
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getWeather();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
 
                 Text(
-                  "13" + "\u00B0" + "C",
+                  nhietDo != null ? nhietDo.toString() + "\u00B0" + "C" : " Loading ",
                   style: TextStyle(
                     color: Colors.white,
                       fontSize: 40.0,
@@ -72,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    "Trang thai: Mua",
+                     "Trang thai: " + currently.toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.0,
@@ -92,25 +125,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   ListTile(
                     leading: FaIcon(FontAwesomeIcons.thermometerHalf),
                     title: Text("Nhiet Do: "),
-                    trailing: Text("13" + "\u00B0" + "C"),
+                    trailing: Text(nhietDo != null ? nhietDo.toString() + "\u00B0" + "C"
+                                    : " Loading"),
                   ),
 
                   ListTile(
                     leading: FaIcon(FontAwesomeIcons.cloud),
                     title: Text("Trang thai: "),
-                    trailing: Text("Mua"),
+                    trailing: Text(trangThai != null ? trangThai.toString() : "Loading"),
                   ),
 
                   ListTile(
                     leading: FaIcon(FontAwesomeIcons.sun),
                     title: Text("Do am: "),
-                    trailing: Text("12 " + "%"),
+                    trailing: Text(doAm != null ? doAm.toString() + "%" : "Dang tai?"),
                   ),
 
                   ListTile(
                     leading: FaIcon(FontAwesomeIcons.wind),
                     title: Text("Toc do gio: "),
-                    trailing: Text("5" + "km/h"),
+                    trailing: Text(tocdoGio != null ? tocdoGio.toString() + "m/s"
+                                    : "Dang tai?"),
                   ),
                 ],
               ),
